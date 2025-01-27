@@ -2738,7 +2738,7 @@ void mlir::reconcileUnrealizedCasts(
         castOp.getInputs().front().getDefiningOp<UnrealizedConversionCastOp>();
     if (!inputCastOp)
       return {};
-    if (inputCastOp.getOutputs() != castOp.getInputs())
+    if (!(inputCastOp.getOutputs() == castOp.getInputs()))
       return {};
     return inputCastOp;
   };

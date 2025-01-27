@@ -50,7 +50,7 @@ FailureOr<scf::ForOp> mlir::scf::upliftWhileToForLoop(RewriterBase &rewriter,
 
   // All `before` block args must be directly forwarded to ConditionOp.
   // They will be converted to `scf.for` `iter_vars` except induction var.
-  if (ValueRange(beforeBody->getArguments()) != beforeTerm.getArgs())
+  if (!(ValueRange(beforeBody->getArguments()) == beforeTerm.getArgs()))
     return rewriter.notifyMatchFailure(loop, "Invalid args order");
 
   using Pred = arith::CmpIPredicate;

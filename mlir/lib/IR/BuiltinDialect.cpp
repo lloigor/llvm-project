@@ -223,7 +223,7 @@ UnrealizedConversionCastOp::fold(FoldAdaptor adaptor,
   // operation.
   Value firstInput = operands.front();
   auto inputOp = firstInput.getDefiningOp<UnrealizedConversionCastOp>();
-  if (!inputOp || inputOp.getResults() != operands ||
+  if (!inputOp || !(inputOp.getResults() == operands) ||
       inputOp.getOperandTypes() != results.getTypes())
     return failure();
 
